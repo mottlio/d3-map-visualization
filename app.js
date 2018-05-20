@@ -60,6 +60,9 @@ d3.queue()
                 .transition()
                 .duration(750)
                 .ease(d3.easeBackIn)
-                .attr("fill")
+                .attr("fill", d => {
+                    var data = d.properties[val];
+                    return data ? scale(data) : "#ccc";
+                });
         }
     });
