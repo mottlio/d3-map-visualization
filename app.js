@@ -29,8 +29,6 @@ d3.queue()
         var path = d3.geoPath()
                         .projection(projection);
 
-        
-
         d3.select('svg')
             .attr('width', width)
             .attr('height', height)
@@ -40,4 +38,28 @@ d3.queue()
             .append("path")
             .classed("country", true)
             .attr("d", path);
+
+        var select = d3.select("select");
+
+        select  
+            .on("change", d => setColor(d3.event.target.value));
+
+        function setColor(val) {
+            var colorRanges = {
+                population: ["white", "purple"],
+                populationDensity: ["white", "red"],
+                medianAge: ["white", "black"],
+                fertilityRate: ["black", "orange"]
+            }
+
+            var scale = d3.scaleLinear()
+                            .domain([0, d3.max(populationData, d => d[val])])
+                            .range(colorRanges[val])
+
+            d3.selectAll(".country")
+                .transition()
+                .duration(750)
+                .ease(d3.easeBackIn)
+                .attr("fill")
+        }
     });
