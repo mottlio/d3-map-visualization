@@ -1,1 +1,13 @@
 Objective of this project is to visualize geographic data on a map with geoJSON and D3.
+
+I use a FORMATTER to structure the CSV data the way I need it.
+
+I then combine the decoded topoJSON data with population data using simple for loops. 
+
+Using a PROJECTION on the geoPath() helper to make a better map.
+
+D3 Projections: https://github.com/d3/d3-geo-projection
+
+I used: d3.geoMercator()
+
+path.projection([projection]) -> function transforming spherical geometry into a 2D plane
